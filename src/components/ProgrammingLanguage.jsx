@@ -1,20 +1,20 @@
-export default function ProgrammingLanguage(lan) {
-  const styles = {
-    backgroundColor: lan.fillColor,
-    color: lan.textColor,
-  };
-
+export default function ProgrammingLanguage({
+  name,
+  background,
+  color,
+  eliminated,
+  assemblyWins,
+}) {
   return (
-    <div className="lan-card-wrapper">
-      <div
-        style={styles}
-        className={`programming-language-card ${
-          lan.isEliminated ? "isDisabled" : ""
-        }`}
-      >
-        <span>{lan.language}</span>
-      </div>
-      {lan.isEliminated && <span className="death-icon">💀</span>}
-    </div>
+    <li
+      className={`programming-language-card${eliminated ? " language-lost" : ""}`}
+      style={{ "--language-background": background, "--language-color": color }}
+      aria-label={`${name}: ${eliminated ? "lost" : assemblyWins ? "takes over" : "safe"}`}
+    >
+      <span aria-hidden="true">
+        {name}
+        {eliminated ? " ×" : ""}
+      </span>
+    </li>
   );
 }
