@@ -2,6 +2,8 @@
 
 A word-guessing game built with React and plain CSS. Find the word before eight wrong guesses remove the programming languages and leave Assembly in charge.
 
+[Play the live game](https://assembly-endgame-drab.vercel.app/)
+
 ## Play
 
 - Choose letters using the on-screen buttons, or type A–Z. Tab, Enter and Space also work.
@@ -30,7 +32,7 @@ npm run build
 npm run preview
 ```
 
-`dist/` is the static build output. A public demo has not yet been verified; no placeholder deployment link is included.
+`dist/` is the static build output. The live demo is deployed on Vercel using the Git-connected Vite project, Node.js 24 and the commands above. No environment variables are required.
 
 ## Structure
 
@@ -57,6 +59,8 @@ The only round state is its word and guesses. Lives, eliminated languages, lette
 Native buttons support keyboard navigation, disabled guesses and explicit outcome labels. A persistent polite live region announces guesses and outcomes; the masked word has a text description. Eight-letter words stay on one row, keys have at least 44px targets, and reduced-motion preferences disable game animations.
 
 The 14 automated tests cover input validation, repeated letters, duplicate guesses, each lost-language message, the eight-miss boundary, winning on the last chance, terminal guards, updater replay and restart. GitHub Actions runs clean installation, lint, tests and build with read-only permissions. Browser verification is documented in the associated pull request; automated rule tests do not certify full screen-reader support, physical devices, contrast or performance.
+
+Production browser checks on 11 October 2026 covered winning and losing rounds, repeated guesses, typed letters, Enter/Space, answer reveal, terminal guards, restart focus and a fresh round on reload. Eight viewports from 280px to 1440px, including landscape, fitted the keyboard without horizontal overflow; the tested six-letter word stayed on one row. These are bounded browser checks, not physical-device or full screen-reader certification.
 
 ## License
 
