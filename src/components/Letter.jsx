@@ -1,4 +1,9 @@
-export default function Letter(letObj) {
-
-  return <div className="guess-box">{letObj.isVisible ? letObj.character : ""}</div>;
+export default function Letter({ letter, visible, missed }) {
+  return (
+    <span
+      className={`guess-box${visible ? " letter-visible" : ""}${missed ? " letter-missed" : ""}`}
+    >
+      {visible ? letter : ""}
+    </span>
+  );
 }

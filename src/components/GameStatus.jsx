@@ -1,15 +1,25 @@
-export default function GameStatus(message) {
-  console.log(message)
-  const styles = {
-    backgroundColor: message.bkg,
-  };
+import {
+  getFeedback,
+  getRoundStatus,
+  getWordDescription,
+} from "../game/rules.js";
+
+export default function GameStatus({ round }) {
+  const { result, remainingGuesses } = getRoundStatus(round);
   return (
-    <>
-      {message.context.length > 0 ? (
-        <div style={styles} className="status-message">
-          {message.context}
-        </div>
-      ) : null}
-    </>
+    <div
+      className={`status-message status-${result}`}
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      <p>{getFeedback(round)}</p>
+      <span className="sr-only">
+        {result === "playing"
+          ? `${remainingGuesses} wrong ${remainingGuesses === 1 ? "guess" : "guesses"} remaining. `
+          : ""}
+        {getWordDescription(round)}
+      </span>
+    </div>
   );
 }
